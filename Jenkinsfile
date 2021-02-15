@@ -19,7 +19,7 @@ pipeline {
 	 			{               
 		 			// Create our project directory.               
 		 			sh 'python -V'
-		 			sh 'pip -V
+		 			sh 'pip -V'
 		 			// Copy all files in our Jenkins workspace to our project directory.
 
 		 			sh 'cp -r ${WORKSPACE}'
