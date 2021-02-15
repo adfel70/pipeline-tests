@@ -2,14 +2,14 @@ pipeline {
 	agent any   
 	environment {       
 		registry = "magalixcorp/k8scicd"      
-		 GOCACHE = "/tmp"   
+		GOCACHE = "/tmp"
 	}   
 
 	stages {       
 	 	stage('Build') {           
 	 		agent {              
 	 			docker {                  
-	 				image 'golang'               
+	 				image 'golang'
 	 				}           
 	 			}          
 	 		steps 
@@ -19,7 +19,7 @@ pipeline {
 		 			sh 'mkdir -p ${GOPATH}/src/hello-world'               
 		 			// Copy all files in our Jenkins workspace to our project directory.
 
-		 			sh 'cp -r ${WORKSPACE}
+		 			sh 'cp -r ${WORKSPACE}'
 		 			/* ${GOPATH}/src/hello-world'   */           
 		 			// Build the app.               
 		 			sh 'go build'                         
@@ -37,7 +37,7 @@ pipeline {
 		 			sh 'cd ${GOPATH}/src'               
 		 			sh 'mkdir -p ${GOPATH}/src/hello-world'               
 		 			// Copy all files in our Jenkins workspace to our project directory.                              
-		 			sh 'cp -r ${WORKSPACE}
+		 			sh 'cp -r ${WORKSPACE}'
 		 			/* ${GOPATH}/src/hello-world'   */            
 		 			// Remove cached test results.               
 		 			sh 'go clean -cache'               
