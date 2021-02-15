@@ -1,22 +1,25 @@
-pipeline {   
+# required plugins:
+# 1. Docker plugin
+# 2. Docker Pipeline
+
+pipeline {
 	agent any   
 	environment {       
-		registry = "magalixcorp/k8scicd"      
-		GOCACHE = "/tmp"
+		registry = "adfel70"
 	}   
 
 	stages {       
 	 	stage('Build') {           
 	 		agent {              
 	 			docker {                  
-	 				image 'golang'
+	 				image 'my-python:0.0.1'
 	 				}           
 	 			}          
 	 		steps 
 	 			{               
 		 			// Create our project directory.               
-		 			sh 'cd ${GOPATH}/src'               
-		 			sh 'mkdir -p ${GOPATH}/src/hello-world'               
+		 			sh 'python -V'
+		 			sh 'pip -V
 		 			// Copy all files in our Jenkins workspace to our project directory.
 
 		 			sh 'cp -r ${WORKSPACE}'
