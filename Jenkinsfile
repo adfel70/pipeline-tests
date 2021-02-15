@@ -1,6 +1,6 @@
-# required plugins:
-# 1. Docker plugin
-# 2. Docker Pipeline
+//required plugins:
+//1. Docker plugin
+//2. Docker Pipeline
 
 pipeline {
 	agent any   
