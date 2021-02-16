@@ -29,6 +29,8 @@ podTemplate(containers: [
                 stage('Check available files?') {
                     sh """
                         ls -la
+                        whoami
+                        ls -la /var/run/
                         docker ps
                     """
                 }
