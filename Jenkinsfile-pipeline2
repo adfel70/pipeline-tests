@@ -5,7 +5,7 @@ podTemplate(containers: [
 
     node(POD_LABEL) {
         stage('Get project') {
-            git 'https://github.com/adfel70/pipeline-tests.git'
+            //git 'https://github.com/adfel70/pipeline-tests.git'
             container('python38') {
                 stage('Check available files') {
                     sh 'ls -la'
