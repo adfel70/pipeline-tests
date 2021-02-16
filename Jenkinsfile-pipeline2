@@ -1,6 +1,7 @@
 podTemplate(containers: [
     containerTemplate(name: 'python39', image: 'python:3.9.1', ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'python39-2', image: 'python:3.9.1', ttyEnabled: true, command: 'cat')
+    containerTemplate(name: 'docker', image: 'docker:latest', ttyEnabled: true, command: 'cat')
   ]) {
 
     node(POD_LABEL) {
@@ -14,12 +15,21 @@ podTemplate(containers: [
         }
 
         stage('Get pip dependencies') {
-            //git url: 'https://github.com/hashicorp/terraform.git'
             container('python39-2') {
                 stage('Check available files?') {
                     sh """
                         ls -la
                         pip -V
+                    """
+                }
+            }
+        }
+        stage('Build docker image') {
+            container('docker') {
+                stage('Check available files?') {
+                    sh """
+                        ls -la
+                        docker ps
                     """
                 }
             }
