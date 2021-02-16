@@ -1,6 +1,6 @@
 podTemplate(containers: [
-    containerTemplate(name: 'python39', image: 'docker pull python:3.9.1', ttyEnabled: true, command: 'cat'),
-    containerTemplate(name: 'python39-2', image: 'docker pull python:3.9.1', ttyEnabled: true, command: 'cat')
+    containerTemplate(name: 'python39', image: 'python:3.9.1', ttyEnabled: true, command: 'cat'),
+    containerTemplate(name: 'python39-2', image: 'python:3.9.1', ttyEnabled: true, command: 'cat')
   ]) {
 
     node(POD_LABEL) {
