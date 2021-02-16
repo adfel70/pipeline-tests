@@ -31,7 +31,7 @@ podTemplate(containers: [
                         ls -la
                         whoami
                         ls -la /var/run/
-                        docker ps
+                        oc version
                     """
                 }
            }
