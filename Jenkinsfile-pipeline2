@@ -1,6 +1,6 @@
 podTemplate(containers: [
-    containerTemplate(name: 'python3.8', image: 'registry.access.redhat.com/ubi8/python-38', ttyEnabled: true, command: 'cat'),
-    containerTemplate(name: 'python3.8-2', image: 'registry.access.redhat.com/ubi8/python-38', ttyEnabled: true, command: 'cat')
+    containerTemplate(name: 'python38', image: 'registry.access.redhat.com/ubi8/python-38', ttyEnabled: true, command: 'cat'),
+    containerTemplate(name: 'python38-2', image: 'registry.access.redhat.com/ubi8/python-38', ttyEnabled: true, command: 'cat')
   ]) {
 
     node(POD_LABEL) {
