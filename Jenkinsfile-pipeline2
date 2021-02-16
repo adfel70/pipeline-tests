@@ -25,7 +25,7 @@ podTemplate(containers: [
             }
         }
         stage('Build docker image') {
-            container('builder') {
+            //container('builder') {
                 stage('Check available files?') {
                     sh """
                         ls -la
@@ -34,7 +34,7 @@ podTemplate(containers: [
                         oc version
                     """
                 }
-           }
+           //}
         }
 
     }
