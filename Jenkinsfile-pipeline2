@@ -1,12 +1,12 @@
 podTemplate(containers: [
-    containerTemplate(name: 'python38', image: 'registry.access.redhat.com/ubi8/python-38', ttyEnabled: true, command: 'cat'),
-    containerTemplate(name: 'python38-2', image: 'registry.access.redhat.com/ubi8/python-38', ttyEnabled: true, command: 'cat')
+    containerTemplate(name: 'python39', image: 'python:3.9.1', ttyEnabled: true, command: 'cat'),
+    containerTemplate(name: 'python39-2', image: 'python:3.9.1', ttyEnabled: true, command: 'cat')
   ]) {
 
     node(POD_LABEL) {
         stage('Get project') {
-            //git 'https://github.com/adfel70/pipeline-tests.git'
-            container('python38') {
+            git 'https://github.com/adfel70/pipeline-tests.git'
+            container('python39') {
                 stage('Check available files') {
                     sh 'ls -la'
                 }
@@ -15,7 +15,7 @@ podTemplate(containers: [
 
         stage('Get pip dependencies') {
             //git url: 'https://github.com/hashicorp/terraform.git'
-            container('python38-2') {
+            container('python39-2') {
                 stage('Check available files?') {
                     sh """
                         ls -la
