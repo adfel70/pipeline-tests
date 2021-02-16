@@ -1,26 +1,25 @@
 podTemplate(containers: [
-    containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
-    containerTemplate(name: 'golang', image: 'golang:1.8.0', ttyEnabled: true, command: 'cat')
+    containerTemplate(name: 'python3.8', image: 'registry.access.redhat.com/ubi8/python-38', ttyEnabled: true, command: 'cat'),
+    containerTemplate(name: 'python3.8-2', image: 'registry.access.redhat.com/ubi8/python-38', ttyEnabled: true, command: 'cat')
   ]) {
 
     node(POD_LABEL) {
-        stage('Get a Maven project') {
-            git 'https://github.com/jenkinsci/kubernetes-plugin.git'
-            container('maven') {
-                stage('Build a Maven project') {
-                    sh 'mvn -B clean install'
+        stage('Get project') {
+            git 'https://github.com/adfel70/pipeline-tests.git'
+            container('python3.8') {
+                stage('Check available files') {
+                    sh 'ls -la'
                 }
             }
         }
 
-        stage('Get a Golang project') {
-            git url: 'https://github.com/hashicorp/terraform.git'
-            container('golang') {
-                stage('Build a Go project') {
+        stage('Get pip dependencies') {
+            //git url: 'https://github.com/hashicorp/terraform.git'
+            container('python3.8-2') {
+                stage('Check available files?') {
                     sh """
-                    mkdir -p /go/src/github.com/hashicorp
-                    ln -s `pwd` /go/src/github.com/hashicorp/terraform
-                    cd /go/src/github.com/hashicorp/terraform && make core-dev
+                        ls -la
+                        pip -V
                     """
                 }
             }
