@@ -61,6 +61,7 @@ spec:
              docker build -t adfel70/test_image:$BUILD_NUMBER .
              docker tag adfel70/test_image:$BUILD_NUMBER adfel70/test_image:latest
           """
+          }
         }
       }
       stage('Push Image') {
