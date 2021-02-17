@@ -69,8 +69,10 @@ spec:
           container('docker') {
           //Push image
             sh """
-               docker push adfel70/test_image:$BUILD_NUMBER
-               docker push adfel70/test_image:latest
+               echo "deploying to registry"
+               #todo: add credentials
+               #docker push adfel70/test_image:$BUILD_NUMBER
+               #docker push adfel70/test_image:latest
             """
           }
         }
