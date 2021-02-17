@@ -13,14 +13,11 @@ spec:
   # Use service account that can deploy to all namespaces
   serviceAccountName: cd-jenkins
   containers:
-  - name: maven
-    image: maven:latest
+  - name: python39
+    image: ython:3.9.1
     command:
     - cat
     tty: true
-    volumeMounts:
-      - mountPath: "/root/.m2"
-        name: m2
   - name: docker
     image: docker:latest
     command:
@@ -33,36 +30,34 @@ spec:
     - name: docker-sock
       hostPath:
         path: /var/run/docker.sock
-    - name: m2
-      persistentVolumeClaim:
-        claimName: m2
 """
 }
    }
   stages {
     stage('Build') {
       steps {
-        container('maven') {
+        container('python39') {
           sh """
-                        mvn package -DskipTests
-                                                """
+             ls -la
+             pip install -r requirements.txt
+          """
         }
       }
     }
     stage('Test') {
       steps {
-        container('maven') {
+        container('python39') {
           sh """
-             mvn test
+             py.test
           """
         }
       }
     }
-    stage('Push') {
+    stage('Build Image') {
       steps {
         container('docker') {
           sh """
-             docker build -t spring-petclinic-demo:$BUILD_NUMBER .
+             docker build -t test_image:$BUILD_NUMBER .
           """
         }
       }
