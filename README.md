@@ -22,3 +22,7 @@ pi pinstall -r requirements.txt
 ```
 py.test
 ```
+## build image
+```
+docker build -t hello:0.0.2 .
+```

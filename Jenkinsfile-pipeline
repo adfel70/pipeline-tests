@@ -56,11 +56,35 @@ spec:
     stage('Build Image') {
       steps {
         container('docker') {
+        //build and tag
           sh """
-             docker build -t test_image:$BUILD_NUMBER .
+             docker build -t adfel70/test_image:$BUILD_NUMBER .
+             docker tag adfel70/test_image:$BUILD_NUMBER adfel70/test_image:latest
           """
         }
       }
-    }
+      stage('Push Image') {
+        steps {
+          container('docker') {
+          //Push image
+            sh """
+               docker push adfel70/test_image:$BUILD_NUMBER
+               docker push adfel70/test_image:latest
+            """
+          }
+        }
+      }
+      stage('Deploy') {
+        steps {
+          container('docker') {
+          //Push image
+            sh """
+                echo "deploying test_image:$BUILD_NUMBER to cluster"
+               # todo: implement
+               # kubectl apply -f deployment.yaml
+            """
+          }
+        }
+      }
   }
 }

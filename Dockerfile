@@ -1,6 +1,6 @@
-FROM alpine:3.6
+FROM python:3.9.1
 
 RUN mkdir /app
 COPY my_project/* /app/
-
-ENTRYPOINT /app/helo-world.py
+RUN chmod -R 775 /app/
+ENTRYPOINT [ "python", "/app/hello_world.py"]
