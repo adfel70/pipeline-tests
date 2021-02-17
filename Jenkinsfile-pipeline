@@ -14,7 +14,7 @@ spec:
   serviceAccountName: cd-jenkins
   containers:
   - name: python39
-    image: ython:3.9.1
+    image: python:3.9.1
     command:
     - cat
     tty: true
